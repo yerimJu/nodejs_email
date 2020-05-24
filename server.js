@@ -1,7 +1,19 @@
-var express = require('express');
-var app = express();
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
 
 const port = 3000;
+
+
+// set body parser
+// https://stackoverflow.com/questions/24543847/req-body-empty-on-posts
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(bodyParser.json());
+
+// set router
+app.use('/', require('./routes'));
 
 // set ejs file as view
 app.set('view engine', 'ejs');

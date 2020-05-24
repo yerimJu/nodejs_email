@@ -2,23 +2,30 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const router = express.Router();
 
+const OWNER_EMAIL = 'yr2675@gmail.com';
+const OWNER_PASSWD = '***';
+
+
 router.post("/nodemailerTest", function (req, res, next) {
+    // console.log(req.body);
     let email = req.body.email;
 
     let transporter = nodemailer.createTransport({
+        // enter your gmail account, check security option
         service: 'gmail',
         auth: {
-            user: 'email',  // gmail 계정 아이디를 입력
-            pass: 'passwd'          // gmail 계정의 비밀번호를 입력
+            user: OWNER_EMAIL,
+            pass: OWNER_PASSWD
         }
     });
 
     let mailOptions = {
-        from: 'email',    // 발송 메일 주소 (위에서 작성한 gmail 계정 아이디)
-        to: email,                     // 수신 메일 주소
-        subject: 'Sending Email using Node.js',   // 제목
-        text: 'That was easy!'  // 내용
+        from: OWNER_EMAIL,
+        to: email,
+        subject: 'Sending Email using Node.js',
+        text: 'That was easy!'
     };
+    console.log(mailOptions);
 
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
