@@ -28,6 +28,7 @@ app.get('/', function (req, res) {
     res.render('view');
 });
 
+// email body test
 app.get('/upload', function (req, res) {
     // send username
     res.render('video', {username: USER_NAME});

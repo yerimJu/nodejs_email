@@ -2,18 +2,36 @@
 <html>
 
 <head>
-    <!-- <link rel='stylesheet' href='/stylesheets/style.css' /> -->
+    <style>
+        #text_contents {
+            height: 100px;
+        }
+        #btn_submit {
+            font-size: 1.2rem;
+        }
+    </style>
 </head>
 
 <body>
     <form action="/nodemailerTest" method="post">
-        <h3>Enter your e-mail:</h3>
-        <input type="text" name="email">
-        <!-- <input type="password" name="pwd"> -->
-        <h3>Enter your name:</h3>
-        <input type="text" name="name">
-        <input type="submit" value="Submit">
+        <h3>Enter a recipient (e-mail address):</h3>
+        <input type="text" name="recipient">
+        <h3>Subject:</h3>
+        <input type="text" name="subject">
+        <h3>Contents:</h3>
+        <input type="radio" name="contentsType" value="text" onclick="clearContents(this)">text<br>
+        <input id="text_contents" type="text" name="contents">
+        <p></p>
+        <input type="radio" name="contentsType" value="html" checked="checked" onclick="clearContents(this)">html
+        <p></p>
+        <input id="btn_submit" type="submit" value="Submit">
     </form>
 </body>
-
+<script>
+    function clearContents(radio) {
+        if (radio.value === 'html') {
+            document.getElementById('text_contents').value = "";
+        }
+    }
+</script>
 </html>
